@@ -1,103 +1,23 @@
-# docker-laravel 🐳
+# ![RealWorld Example App](../realworld-laravel-inertia-vue-ts/src/logo.png)
 
-<p align="center">
-    <img src="https://user-images.githubusercontent.com/35098175/145682384-0f531ede-96e0-44c3-a35e-32494bd9af42.png" alt="docker-laravel">
-</p>
-<p align="center">
-    <img src="https://github.com/ucan-lab/docker-laravel/actions/workflows/laravel-create-project.yml/badge.svg" alt="Test laravel-create-project.yml">
-    <img src="https://github.com/ucan-lab/docker-laravel/actions/workflows/laravel-git-clone.yml/badge.svg" alt="Test laravel-git-clone.yml">
-    <img src="https://img.shields.io/github/license/ucan-lab/docker-laravel" alt="License">
-</p>
+> ### [YOUR_FRAMEWORK] codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
 
-## Introduction
 
-Build a simple laravel development environment with docker-compose. Compatible with Windows(WSL2), macOS(M1) and Linux.
+### [Demo](https://demo.realworld.io/)&nbsp;&nbsp;&nbsp;&nbsp;[RealWorld](https://github.com/gothinkster/realworld)
 
-## Usage
 
-### Create an initial Laravel project
+This codebase was created to demonstrate a fully fledged fullstack application built with **[YOUR_FRAMEWORK]** including CRUD operations, authentication, routing, pagination, and more.
 
-1. Click [Use this template](https://github.com/ucan-lab/docker-laravel/generate)
-2. Git clone & change directory
-3. Execute the following command
+We've gone to great lengths to adhere to the **[YOUR_FRAMEWORK]** community styleguides & best practices.
 
-```bash
-$ task create-project
+For more information on how to this works with other frontends/backends, head over to the [RealWorld](https://github.com/gothinkster/realworld) repo.
 
-# or...
 
-$ make create-project
+# How it works
 
-# or...
+> Describe the general architecture of your app here
 
-$ mkdir -p src
-$ docker compose build
-$ docker compose up -d
-$ docker compose exec app composer create-project --prefer-dist laravel/laravel .
-$ docker compose exec app php artisan key:generate
-$ docker compose exec app php artisan storage:link
-$ docker compose exec app chmod -R 777 storage bootstrap/cache
-$ docker compose exec app php artisan migrate
-```
+# Getting started
 
-http://localhost
+> npm install, npm start, etc.
 
-### Create an existing Laravel project
-
-1. Git clone & change directory
-2. Execute the following command
-
-```bash
-$ task install
-
-# or...
-
-$ make install
-
-# or...
-
-$ docker compose build
-$ docker compose up -d
-$ docker compose exec app composer install
-$ docker compose exec app cp .env.example .env
-$ docker compose exec app php artisan key:generate
-$ docker compose exec app php artisan storage:link
-$ docker compose exec app chmod -R 777 storage bootstrap/cache
-```
-
-http://localhost
-
-## Tips
-
-- Read this [Taskfile](https://github.com/ucan-lab/docker-laravel/blob/main/Taskfile.yml).
-- Read this [Makefile](https://github.com/ucan-lab/docker-laravel/blob/main/Makefile).
-- Read this [Wiki](https://github.com/ucan-lab/docker-laravel/wiki).
-
-## Container structures
-
-```bash
-├── app
-├── web
-└── db
-```
-
-### app container
-
-- Base image
-  - [php](https://hub.docker.com/_/php):8.3-fpm-bullseye
-  - [composer](https://hub.docker.com/_/composer):2.6
-
-### web container
-
-- Base image
-  - [nginx](https://hub.docker.com/_/nginx):1.25
-
-### db container
-
-- Base image
-  - [mysql/mysql-server](https://hub.docker.com/r/mysql/mysql-server):8.0
-
-### mailpit container
-
-- Base image
-  - [axllent/mailpit](https://hub.docker.com/r/axllent/mailpit)
