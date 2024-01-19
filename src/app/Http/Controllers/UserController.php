@@ -37,4 +37,21 @@ class UserController extends Controller
             ]
         ]);
     }
+
+    public function login(Request $request): JsonResponse
+    {
+        if (!$token = auth()->attempt(['email' => $request->input('user.email'), 'password' => $request->input('user.password')])) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
+        return response()->json([
+            "user" => [
+                "email" => auth()->user()->email,
+                "token" => $token,
+                "username" => auth()->user()->name,
+                "bio" => auth()->user()->bio,
+                "image" => auth()->user()->image
+            ]
+        ]);
+    }
 }
