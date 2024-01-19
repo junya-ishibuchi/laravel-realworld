@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,4 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::post('/users', [UserController::class, 'create']);
 Route::post('/users/login', [UserController::class, 'login']);
 
-
+Route::middleware(['api', 'jwt.auth'])->group(function () {
+    Route::post('/articles', [ArticleController::class, 'create']);
+});
