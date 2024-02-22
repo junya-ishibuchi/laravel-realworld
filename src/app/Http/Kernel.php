@@ -5,6 +5,7 @@ namespace App\Http;
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\ChangeTokenToBearerMiddleware;
 use App\Http\Middleware\EncryptCookies;
+use App\Http\Middleware\JsonHeaderMiddleware;
 use App\Http\Middleware\PreventRequestsDuringMaintenance;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\TrimStrings;
@@ -66,7 +67,8 @@ class Kernel extends HttpKernel
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             ThrottleRequests::class . ':api',
             SubstituteBindings::class,
-            ChangeTokenToBearerMiddleware::class
+            ChangeTokenToBearerMiddleware::class,
+            JsonHeaderMiddleware::class,
         ],
     ];
 
