@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function create(Request $request): JsonResponse
+    public function create(Request $request, UserService $userService): JsonResponse
     {
         // TODO: move to Request class
         $request->validate([
@@ -19,11 +18,7 @@ class UserController extends Controller
         ]);
 
         // TODO: create service and repository layer
-        $user = User::create([
-            'name' => $request->input('user.username'),
-            'email' => $request->input('user.email'),
-            'password' => Hash::make($request->input('user.password')),
-        ]);
+        $user = $userService->create($request->input('user.username'), $request->input('user.email'), $request->input('user.password'));
 
         $token = auth()->attempt(['email' => $request->input('user.email'), 'password' => $request->input('user.password')]);
 
@@ -33,8 +28,8 @@ class UserController extends Controller
                 "token" => $token,
                 "username" => $user->name,
                 "bio" => $user->bio,
-                "image" => $user->image
-            ]
+                "image" => $user->image,
+            ],
         ]);
     }
 
@@ -50,8 +45,8 @@ class UserController extends Controller
                 "token" => $token,
                 "username" => auth()->user()->name,
                 "bio" => auth()->user()->bio,
-                "image" => auth()->user()->image
-            ]
+                "image" => auth()->user()->image,
+            ],
         ]);
     }
 }
